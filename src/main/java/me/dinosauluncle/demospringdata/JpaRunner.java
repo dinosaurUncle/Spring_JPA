@@ -1,5 +1,6 @@
 package me.dinosauluncle.demospringdata;
 
+import org.hibernate.Session;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -21,9 +22,7 @@ public class JpaRunner implements ApplicationRunner {
         account.setUsername("jong222");
         account.setPassword("pass2222");
 
-        entityManager.persist(account);
-
-        entityManager.remove(account);
-
+        Session session = entityManager.unwrap(Session.class);
+        session.save(account);
     }
 }
